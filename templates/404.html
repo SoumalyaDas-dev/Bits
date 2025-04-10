@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - AI-Powered Local Business Booster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="container error-container">
+        <header>
+            <h1>404 - Page Not Found</h1>
+        </header>
+
+        <main>
+            <div class="error-content">
+                <p>The page you're looking for doesn't exist or has been moved.</p>
+                <a href="{{ url_for('index') }}" class="btn-primary">Return to Home</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 AI-Powered Local Business Booster | Created for Hackathon</p>
+        </footer>
+    </div>
+</body>
+</html>

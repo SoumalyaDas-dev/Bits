@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Local Business Booster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI-Powered Local Business Booster</h1>
+            <p class="subtitle">Generate professional marketing materials for your small business in minutes</p>
+        </header>
+
+        <main>
+            <section class="form-container">
+                <form action="/generate" method="POST" id="business-form">
+                    <div class="form-group">
+                        <label for="business_name">Business Name</label>
+                        <input type="text" id="business_name" name="business_name" required placeholder="Enter your business name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business_type">Business Type</label>
+                        <select id="business_type" name="business_type" required>
+                            <option value="" disabled selected>Select your business type</option>
+                            {% for type in business_types %}
+                            <option value="{{ type }}">{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business_description">Business Description</label>
+                        <textarea id="business_description" name="business_description" required placeholder="Briefly describe your business, products, or services"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business_location">Location</label>
+                        <input type="text" id="business_location" name="business_location" required placeholder="City, State or Region">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="target_audience">Target Audience</label>
+                        <textarea id="target_audience" name="target_audience" required placeholder="Describe your ideal customers (age, interests, needs, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="style_preference">Style Preference</label>
+                        <select id="style_preference" name="style_preference" required>
+                            <option value="" disabled selected>Select your preferred style</option>
+                            {% for style in style_preferences %}
+                            <option value="{{ style }}">{{ style }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Generate Content</button>
+                        <button type="reset" class="btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="info-section">
+                <div class="info-card">
+                    <h3>What You'll Get</h3>
+                    <ul>
+                        <li>Professional business descriptions</li>
+                        <li>Customized flyer designs</li>
+                        <li>Email marketing templates</li>
+                        <li>Social media posts for different platforms</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>How It Works</h3>
+                    <ol>
+                        <li>Fill out the business information form</li>
+                        <li>Our AI generates tailored marketing content</li>
+                        <li>Preview and download your materials</li>
+                        <li>Use them to promote your business</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 AI-Powered Local Business Booster | Created for Hackathon</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

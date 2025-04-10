@@ -1,0 +1,18 @@
+# Requirements for AI-Powered Local Business Booster
+
+# Flask and extensions
+flask==2.3.3
+Werkzeug==2.3.7
+
+# API Clients
+requests==2.31.0
+
+# Image Processing
+Pillow==10.0.1
+
+# PDF Generation
+fpdf==1.7.2
+
+# Other utilities
+python-dotenv==1.0.0
+base64io==1.0.3

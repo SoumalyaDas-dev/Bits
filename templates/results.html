@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Content - AI-Powered Local Business Booster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="container results-container">
+        <header>
+            <h1>Generated Content for {{ business_data.name }}</h1>
+            <p class="subtitle">{{ business_data.type }} in {{ business_data.location }}</p>
+            <a href="{{ url_for('index') }}" class="btn-back">← Back to Form</a>
+        </header>
+
+        <main>
+            <!-- Display any flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <!-- Content Summary Section -->
+            <section class="content-summary">
+                <h2>Generated Content for {{ business_data.name }}</h2>
+                <p>We've created the following content for your {{ business_data.type }} business:</p>
+                <ul class="content-summary-list">
+                    <li>Business descriptions (short, medium, and long formats)</li>
+    
+                    <li>Email templates (welcome, promotional, and newsletter)</li>
+                    <li>Social media posts for multiple platforms</li>
+                </ul>
+                <p>Use the tabs below to view and customize your content.</p>
+            </section>
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="description">Business Description</button>
+
+                <button class="tab-btn" data-tab="email">Email Templates</button>
+                <button class="tab-btn" data-tab="social">Social Media</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Business Description Tab -->
+                <div class="tab-pane active" id="description-tab">
+                    <div class="content-card">
+                        <h2>Business Descriptions</h2>
+                        
+                        <div class="description-section">
+                            <h3>Short Description</h3>
+                            <div class="content-box">
+                                <p>{{ content.description.short }}</p>
+                                <button class="btn-copy" data-content="{{ content.description.short }}">Copy to Clipboard</button>
+                            </div>
+                        </div>
+                        
+                        <div class="description-section">
+                            <h3>Medium Description</h3>
+                            <div class="content-box">
+                                <p>{{ content.description.medium }}</p>
+                                <button class="btn-copy" data-content="{{ content.description.medium }}">Copy to Clipboard</button>
+                            </div>
+                        </div>
+                        
+                        <div class="description-section">
+                            <h3>Long Description</h3>
+                            <div class="content-box">
+                                <p>{{ content.description.long }}</p>
+                                <button class="btn-copy" data-content="{{ content.description.long }}">Copy to Clipboard</button>
+                            </div>
+                        </div>
+                        
+                        <div class="export-actions">
+                            <a href="{{ url_for('export', content_type='description') }}" class="btn-export">Download as Text File</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+                <!-- Email Templates Tab -->
+                <div class="tab-pane" id="email-tab">
+                    <div class="content-card">
+                        <h2>Email Marketing Templates</h2>
+                        
+                        <div class="email-tabs">
+                            <button class="email-tab-btn active" data-email="welcome">Welcome Email</button>
+                            <button class="email-tab-btn" data-email="promotional">Promotional Email</button>
+                            <button class="email-tab-btn" data-email="newsletter">Newsletter</button>
+                        </div>
+                        
+                        <div class="email-content-panes">
+                            <!-- Welcome Email -->
+                            <div class="email-pane active" id="welcome-email">
+                                <div class="email-preview">
+                                    <div class="email-header">
+                                        <h3>Subject: {{ content.email.welcome.subject }}</h3>
+                                    </div>
+                                    <div class="email-body">
+                                        <p>{{ content.email.welcome.greeting }}</p>
+                                        <div class="email-main-content">
+                                            {{ content.email.welcome.body | safe }}
+                                        </div>
+                                        <p class="email-cta">{{ content.email.welcome.cta }}</p>
+                                        <p class="email-signature">{{ content.email.welcome.sign_off }}<br>{{ business_data.name }} Team</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-sections">
+                                    <div class="content-section">
+                                        <h3>Subject Line</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.welcome.subject }}</p>
+                                            <button class="btn-copy" data-content="{{ content.email.welcome.subject }}">Copy</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="content-section">
+                                        <h3>Email Body</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.welcome.greeting }}</p>
+                                            <p>{{ content.email.welcome.body | safe }}</p>
+                                            <p>{{ content.email.welcome.cta }}</p>
+                                            <p>{{ content.email.welcome.sign_off }}<br>{{ business_data.name }} Team</p>
+                                            <button class="btn-copy" data-content="{{ content.email.welcome.greeting }}\n\n{{ content.email.welcome.body }}\n\n{{ content.email.welcome.cta }}\n\n{{ content.email.welcome.sign_off }}\n{{ business_data.name }} Team">Copy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Promotional Email -->
+                            <div class="email-pane" id="promotional-email">
+                                <div class="email-preview">
+                                    <div class="email-header">
+                                        <h3>Subject: {{ content.email.promotional.subject }}</h3>
+                                    </div>
+                                    <div class="email-body">
+                                        <p>{{ content.email.promotional.greeting }}</p>
+                                        <div class="email-main-content">
+                                            {{ content.email.promotional.body | safe }}
+                                        </div>
+                                        <p class="email-cta">{{ content.email.promotional.cta }}</p>
+                                        <p class="email-signature">{{ content.email.promotional.sign_off }}<br>{{ business_data.name }} Team</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-sections">
+                                    <div class="content-section">
+                                        <h3>Subject Line</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.promotional.subject }}</p>
+                                            <button class="btn-copy" data-content="{{ content.email.promotional.subject }}">Copy</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="content-section">
+                                        <h3>Email Body</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.promotional.greeting }}</p>
+                                            <p>{{ content.email.promotional.body | safe }}</p>
+                                            <p>{{ content.email.promotional.cta }}</p>
+                                            <p>{{ content.email.promotional.sign_off }}<br>{{ business_data.name }} Team</p>
+                                            <button class="btn-copy" data-content="{{ content.email.promotional.greeting }}\n\n{{ content.email.promotional.body }}\n\n{{ content.email.promotional.cta }}\n\n{{ content.email.promotional.sign_off }}\n{{ business_data.name }} Team">Copy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Newsletter Email -->
+                            <div class="email-pane" id="newsletter-email">
+                                <div class="email-preview">
+                                    <div class="email-header">
+                                        <h3>Subject: {{ content.email.newsletter.subject }}</h3>
+                                    </div>
+                                    <div class="email-body">
+                                        <p>{{ content.email.newsletter.greeting }}</p>
+                                        <div class="email-main-content">
+                                            {{ content.email.newsletter.body | safe }}
+                                        </div>
+                                        <p class="email-cta">{{ content.email.newsletter.cta }}</p>
+                                        <p class="email-signature">{{ content.email.newsletter.sign_off }}<br>{{ business_data.name }} Team</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-sections">
+                                    <div class="content-section">
+                                        <h3>Subject Line</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.newsletter.subject }}</p>
+                                            <button class="btn-copy" data-content="{{ content.email.newsletter.subject }}">Copy</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="content-section">
+                                        <h3>Email Body</h3>
+                                        <div class="content-box">
+                                            <p>{{ content.email.newsletter.greeting }}</p>
+                                            <p>{{ content.email.newsletter.body | safe }}</p>
+                                            <p>{{ content.email.newsletter.cta }}</p>
+                                            <p>{{ content.email.newsletter.sign_off }}<br>{{ business_data.name }} Team</p>
+                                            <button class="btn-copy" data-content="{{ content.email.newsletter.greeting }}\n\n{{ content.email.newsletter.body }}\n\n{{ content.email.newsletter.cta }}\n\n{{ content.email.newsletter.sign_off }}\n{{ business_data.name }} Team">Copy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="export-actions">
+                            <a href="{{ url_for('export', content_type='email') }}" class="btn-export">Download as HTML</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media Tab -->
+                <div class="tab-pane" id="social-tab">
+                    <div class="content-card">
+                        <h2>Social Media Posts</h2>
+                        
+                        <div class="social-tabs">
+                            <button class="social-tab-btn active" data-platform="instagram">Instagram</button>
+                            <button class="social-tab-btn" data-platform="facebook">Facebook</button>
+                            <button class="social-tab-btn" data-platform="twitter">Twitter</button>
+                            <button class="social-tab-btn" data-platform="linkedin">LinkedIn</button>
+                        </div>
+                        
+                        <div class="social-content-panes">
+                            <!-- Instagram Post -->
+                            <div class="social-pane active" id="instagram-post">
+                                <div class="social-preview instagram-preview">
+                                    {% if images and images|length > 0 %}
+                                    <div class="social-image">
+                                        <img src="{{ images[0].url }}" alt="Instagram Post Image">
+                                    </div>
+                                    {% endif %}
+                                    <div class="social-caption">
+                                        <p>{{ content.social_media.instagram }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-section">
+                                    <h3>Instagram Caption</h3>
+                                    <div class="content-box">
+                                        <p>{{ content.social_media.instagram }}</p>
+                                        <button class="btn-copy" data-content="{{ content.social_media.instagram }}">Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Facebook Post -->
+                            <div class="social-pane" id="facebook-post">
+                                <div class="social-preview facebook-preview">
+                                    {% if images and images|length > 0 %}
+                                    <div class="social-image">
+                                        <img src="{{ images[0].url }}" alt="Facebook Post Image">
+                                    </div>
+                                    {% endif %}
+                                    <div class="social-caption">
+                                        <p>{{ content.social_media.facebook }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-section">
+                                    <h3>Facebook Post</h3>
+                                    <div class="content-box">
+                                        <p>{{ content.social_media.facebook }}</p>
+                                        <button class="btn-copy" data-content="{{ content.social_media.facebook }}">Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Twitter Post -->
+                            <div class="social-pane" id="twitter-post">
+                                <div class="social-preview twitter-preview">
+                                    <div class="social-caption">
+                                        <p>{{ content.social_media.twitter }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-section">
+                                    <h3>Twitter Post</h3>
+                                    <div class="content-box">
+                                        <p>{{ content.social_media.twitter }}</p>
+                                        <button class="btn-copy" data-content="{{ content.social_media.twitter }}">Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- LinkedIn Post -->
+                            <div class="social-pane" id="linkedin-post">
+                                <div class="social-preview linkedin-preview">
+                                    {% if images and images|length > 0 %}
+                                    <div class="social-image">
+                                        <img src="{{ images[0].url }}" alt="LinkedIn Post Image">
+                                    </div>
+                                    {% endif %}
+                                    <div class="social-caption">
+                                        <p>{{ content.social_media.linkedin }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-section">
+                                    <h3>LinkedIn Post</h3>
+                                    <div class="content-box">
+                                        <p>{{ content.social_media.linkedin }}</p>
+                                        <button class="btn-copy" data-content="{{ content.social_media.linkedin }}">Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="export-actions">
+                            <a href="{{ url_for('export', content_type='social') }}" class="btn-export">Download as Image</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Images Section -->
+            <section class="images-section">
+                <h2>Stock Images for Your Business</h2>
+                <div class="image-gallery">
+                    {% for image in images %}
+                    <div class="image-card">
+                        <img src="{{ image.url }}" alt="Business Image">
+                        <div class="image-info">
+                            <p>Photo by <a href="{{ image.photographer_url }}" target="_blank">{{ image.photographer }}</a> on {{ image.source }}</p>
+                            <a href="{{ image.download_url }}" download class="btn-download">Download</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 AI-Powered Local Business Booster | Created for Hackathon</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="copy-toast">Copied to clipboard!</div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
